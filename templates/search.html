@@ -29,6 +29,17 @@
     td {
         border: 1px solid black;
     }
+
+    #footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #center {
+        width: 500px;
+        margin: 0 auto;
+    }
 </style>
 
 <body>
@@ -85,6 +96,14 @@
                         </th>
 
                         {% endfor %}
+                    </tr>
+                </table>
+                <table>
+                    <tr>
+                        <th>
+                            <a href="{{ url_for('dashboard', userUsername='admin')}}">Back</a><br>
+                        </th>
+
                     </tr>
                 </table>
                 <!-- <td>{{response}}</td> -->

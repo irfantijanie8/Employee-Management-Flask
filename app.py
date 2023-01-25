@@ -314,7 +314,7 @@ def addEmployee():
                 connection.close()
                 return render_template('addEmployee.html', form=addEmployee)
 
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard', userUsername="admin"))
             # return getRegistrationForm.username.data
     elif request.method == 'GET':
         return render_template('addEmployee.html', form=addEmployee)
