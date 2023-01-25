@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetRegistrationForm</title>
+</head>
+
+<style>
+    .table-selection {
+        border: 2px solid blueviolet
+    }
+
+    .anchor-button {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .gender-options {
+        list-style: none;
+    }
+</style>
+
+<body>
+    <h1 style="text-align: center;color: crimson; font-size: 25px;">Registration Form</h1>
+    {% for message in form.username.errors%}
+    <div>{{message}}</div>
+    {%endfor%}
+    {% for message in form.password.errors%}
+    <div>{{message}}</div>
+    {%endfor%}
+
+    <form method="POST" action="">
+        <div class="table-selection">
+            <table>
+                <tr>
+                    <td>{{form.name.label}}</td>
+                    <td>{{form.name}}</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>{{form.gender(class="gender-options")}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.email.label}}</td>
+                    <td>{{form.email}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.address.label}}</td>
+                    <td>{{form.address}}</td>
+                </tr>
+                <tr>
+                    <td>Academic Qualification</td>
+                    <td>{{form.academic(class="academic-options")}}</td>
+                </tr>
+
+                <tr>
+                    <td>{{form.username.label}}</td>
+                    <td>{{form.username}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.password.label}}</td>
+                    <td>{{form.password}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.submit(class="anchor-button")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+    <div>
+        <form method="POST" action="">
+            {{ form.username }}
+            {{ form.password }}
+            {{ form.submit }}
+        </form>
+
+    </div>
+
+</body>
+
+</html>
