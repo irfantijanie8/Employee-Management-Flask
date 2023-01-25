@@ -21,6 +21,10 @@
     .mybtn {
         background: rgba(0, 0, 0, 0.5);
     }
+
+    .error {
+        color: white;
+    }
 </style>
 <div class="container">
     <div class="row">
@@ -39,6 +43,16 @@
                     <td>{{form.submit(class="btn btn-block btn-dark mybtn")}}</td>
                     <a href="/signup" class="btn btn-block btn-dark  mybtn link">Signup</a>
                 </div>
+                <center>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </center>
+
             </form>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12"></div>

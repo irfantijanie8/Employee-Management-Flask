@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Employee</title>
+</head>
+<style>
+    .table-selection {
+        border: 2px solid blueviolet
+    }
+
+    .anchor-button {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .gender-options {
+        list-style: none;
+    }
+
+    .error {
+        color: white;
+    }
+</style>
+
+<body>
+    <h1 style="text-align: center;color: crimson; font-size: 25px;">Search Employee</h1>
+    <form method="POST" action="">
+        <div class="table selection">
+            <center>
+                {{form.employeeId}}
+            </center>
+            <center>
+                {{form.submit(class="anchor-button")}}
+            </center>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+            <td class="error">{{ message }}</td>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+
+            <center>
+                <ul class="list-group">
+                    {{result[1]}}
+                    {% for product in result %}
+                    <center>
+                        {{product}}
+                    </center>
+                    {% endfor %}
+                </ul>
+            </center>
+        </div>
+    </form>
+
+</body>
+
+</html>

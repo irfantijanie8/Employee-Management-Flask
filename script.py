@@ -23,14 +23,14 @@ cursor = connection.cursor()
 #  Password VARCHAR)"""
 # cursor.execute(command2)
 
-cursor.execute(
-    "INSERT INTO employee_info VALUES (Null, 'Muhammad Irfan', 'Male', 'irfantijanie1@gmail.com', 'no.43 Taman', 'bachelor', 'irfantijanie1', '123')")
+# cursor.execute(
+#     "INSERT INTO employee_info VALUES (Null, 'Muhammad Irfan', 'Male', 'irfantijanie1@gmail.com', 'no.43 Taman', 'bachelor', 'irfantijanie1', '123')")
 
 
 cursor.execute(
-    "SELECT * FROM employee_info where Username='irfantijanie1' AND Password='123';")
+    "SELECT * FROM employee_info;")
 
-results = cursor.fetchone()
+results = cursor.fetchall()
 print(results)
 connection.commit()
 cursor.close()
