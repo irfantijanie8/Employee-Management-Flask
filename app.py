@@ -71,8 +71,7 @@ def dbConnect():
 
 
 def getIdInfo(empID):
-    conn = sqlite3.connect(
-        r'Employee Management/employee_info_db.db')
+    conn = dbConnect()
     cur = conn.cursor()
     conn.row_factory = sqlite3.Row
     cur.execute(f"SELECT * FROM employee_info where employee_id='{empID}'")
@@ -81,8 +80,7 @@ def getIdInfo(empID):
 
 
 def getId(username):
-    conn = sqlite3.connect(
-        r'Employee Management/employee_info_db.db')
+    conn = dbConnect()
     cur = conn.cursor()
     conn.row_factory = sqlite3.Row
     cur.execute(f"SELECT * FROM employee_info where Username='{username}'")
@@ -114,8 +112,7 @@ def login():
         else:
             usernameLogin = getLoginForm.username.data
             passwordLogin = getLoginForm.password.data
-            connection = sqlite3.connect(
-                r'Employee Management/employee_info_db.db')
+            connection = dbConnect()
             cursor = connection.cursor()
             cursor.execute(
                 f"SELECT * FROM admin_auth where Username='{usernameLogin}' AND Password='{passwordLogin}';")
@@ -158,8 +155,7 @@ def signup():
             flash("please fill out this field")
             return render_template('signup.html', form=getRegistrationForm)
         else:
-            connection = sqlite3.connect(
-                r'Employee Management/employee_info_db.db')
+            connection = dbConnect()
             cursor = connection.cursor()
 
             name1 = getRegistrationForm.name.data
@@ -198,8 +194,7 @@ def dashboard():
         userUsername = request.args['userUsername']
     except:
         return "please login"
-    connection = sqlite3.connect(
-        r'Employee Management/employee_info_db.db')
+    connection = dbConnect()
     cursor = connection.cursor()
 
     cursor.execute(
@@ -222,8 +217,7 @@ class EmployeeInfo(Resource):
     def get(self):
         users = []
         try:
-            conn = sqlite3.connect(
-                r'Employee Management/employee_info_db.db')
+            conn = dbConnect()
             cur = conn.cursor()
             conn.row_factory = sqlite3.Row
             cur.execute("SELECT * FROM employee_info")
@@ -255,8 +249,7 @@ def adminSearch():
             flash("please fill out this field")
             return render_template('search.html', form=getEmpID)
         else:
-            connection = sqlite3.connect(
-                r'Employee Management/employee_info_db.db')
+            connection = dbConnect()
             cursor = connection.cursor()
             EMPID = getEmpID.employeeId.data
             cursor.execute(
@@ -287,8 +280,7 @@ def addEmployee():
             flash("please fill out this field")
             return render_template('addEmployee.html', form=addEmployee)
         else:
-            connection = sqlite3.connect(
-                r'Employee Management/employee_info_db.db')
+            connection = dbConnect()
             cursor = connection.cursor()
 
             name1 = addEmployee.name.data
@@ -329,8 +321,7 @@ def view():
             flash("please fill out this field")
             return render_template('view.html', form=updateEmployee)
         else:
-            connection = sqlite3.connect(
-                r'Employee Management/employee_info_db.db')
+            connection = dbConnect()
             cursor = connection.cursor()
 
             id1 = updateEmployee.empID.data
@@ -368,7 +359,7 @@ def view():
         #     return form.userna.data
 
         # def __init__(self):
-        #     con = sqlite3.connect('employee_info_db.db')
+        #     con = dbConnect()
         #     c = con.cursor
 
 
@@ -376,8 +367,7 @@ def view():
 def delete():
     if request.method == 'GET':
         empID = request.args['empID']
-        connection = sqlite3.connect(
-            r'Employee Management/employee_info_db.db')
+        connection = dbConnect()
         cursor = connection.cursor()
         cursor.execute(
             f"DELETE FROM employee_info where employee_id='{empID}';")
