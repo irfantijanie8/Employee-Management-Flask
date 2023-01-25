@@ -78,6 +78,9 @@
                     <td></td>
                     <td>{{form.submit(class="anchor-button")}}</td>
                 </tr>
+                <tr>
+                    <a href="{{ url_for('delete', empID=form.empInfo[0])}}">Delete</a><br>
+                </tr>
             </table>
         </div>
     </form>

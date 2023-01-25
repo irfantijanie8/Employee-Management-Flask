@@ -60,6 +60,7 @@
                         <th>Academic Qualification</th>
                         <th>Username</th>
                         <th>Password</th>
+                        <th>View</th>
                     </tr>
                     {% for info in response %}
                     <tr>
@@ -71,6 +72,9 @@
                         <th>{{info['Academic_qualification']}}</th>
                         <th>{{info['Username']}}</th>
                         <th>{{info['Password']}}</th>
+                        <th>
+                            <a href="{{ url_for('view', empID=info['employee_id'])}}">View</a><br>
+                        </th>
                     </tr>
                     {% endfor %}
                     <tr>

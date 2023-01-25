@@ -320,7 +320,7 @@ def addEmployee():
         return render_template('addEmployee.html', form=addEmployee)
 
 
-@ app.route('/view', methods=['GET', 'POST', 'DELETE'])
+@ app.route('/view', methods=['GET', 'POST'])
 def view():
     updateEmployee = UpdateForm()
 
@@ -370,6 +370,23 @@ def view():
         # def __init__(self):
         #     con = sqlite3.connect('employee_info_db.db')
         #     c = con.cursor
+
+
+@ app.route('/delete', methods=['GET', 'POST'])
+def delete():
+    if request.method == 'GET':
+        empID = request.args['empID']
+        connection = sqlite3.connect(
+            r'Employee Management/employee_info_db.db')
+        cursor = connection.cursor()
+        cursor.execute(
+            f"DELETE FROM employee_info where employee_id='{empID}';")
+        connection.commit()
+        cursor.close()
+        connection.close()
+        return redirect(url_for('adminSearch'))
+
+
 api.add_resource(EmployeeInfo, '/api')
 app.run
 
