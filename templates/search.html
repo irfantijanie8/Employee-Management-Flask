@@ -23,6 +23,12 @@
     .error {
         color: white;
     }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+    }
 </style>
 
 <body>
@@ -44,15 +50,43 @@
             {% endwith %}
 
             <center>
-                <ul class="list-group">
-                    {{result[1]}}
-                    {% for product in result %}
-                    <center>
-                        {{product}}
-                    </center>
+                <table style="width:100%">
+                    <tr>
+                        <th>Employee ID</th>
+                        <th>Employee Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Academic Qualification</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                    </tr>
+                    {% for info in response %}
+                    <tr>
+                        <th>{{info['employee_id']}}</th>
+                        <th>{{info['employee_name']}}</th>
+                        <th>{{info['gender']}}</th>
+                        <th>{{info['email']}}</th>
+                        <th>{{info['address']}}</th>
+                        <th>{{info['Academic_qualification']}}</th>
+                        <th>{{info['Username']}}</th>
+                        <th>{{info['Password']}}</th>
+                    </tr>
                     {% endfor %}
-                </ul>
+                    <tr>
+                        {% for product in result %}
+
+                        <th>
+                            {{product}}
+                        </th>
+
+                        {% endfor %}
+                    </tr>
+                </table>
+                <!-- <td>{{response}}</td> -->
+
             </center>
+
         </div>
     </form>
 

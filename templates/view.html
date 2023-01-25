@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Employee Info</title>
+</head>
+
+<style>
+    .table-selection {
+        border: 2px solid blueviolet
+    }
+
+    .anchor-button {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .gender-options {
+        list-style: none;
+    }
+</style>
+
+<body>
+    <h1 style="text-align: center;color: crimson; font-size: 25px;">View Employee Info</h1>
+
+    <form method="POST" action="">
+        <div class="table-selection">
+            <table>
+                <tr>
+                    <td>{{form.empID}}</td>
+                </tr>
+
+                <tr>
+                    <td>{{form.name.label}}</td>
+                    <td>{{form.name}}</td>
+                    <td>{{form.empInfo[1]}}</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>{{form.gender(class="gender-options")}}</td>
+                    <td>{{form.empInfo[2]}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.email.label}}</td>
+                    <td>{{form.email}}</td>
+                    <td>{{form.empInfo[3]}}</td>
+                </tr>
+                <tr>
+                    <td>{{form.address.label}}</td>
+                    <td>{{form.address}}</td>
+                    <td>{{form.empInfo[4]}}</td>
+                </tr>
+                <tr>
+                    <td>Academic Qualification</td>
+                    <td>{{form.academic(class="academic-options")}}</td>
+                    <td>{{form.empInfo[5]}}</td>
+                </tr>
+
+                <tr>
+                    <td>{{form.username.label}}</td>
+                    <td>{{form.username}}</td>
+                    <td>{{form.empInfo[6]}}</td>
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    {% for message in messages %}
+                    <td class="error">{{ message }}</td>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </tr>
+                <tr>
+                    <td>{{form.password.label}}</td>
+                    <td>{{form.password}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>{{form.submit(class="anchor-button")}}</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+</body>
+
+</html>

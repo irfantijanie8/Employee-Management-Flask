@@ -26,6 +26,17 @@ cursor = connection.cursor()
 # cursor.execute(
 #     "INSERT INTO employee_info VALUES (Null, 'Muhammad Irfan', 'Male', 'irfantijanie1@gmail.com', 'no.43 Taman', 'bachelor', 'irfantijanie1', '123')")
 
+name1 = "Al-Ahmad"
+gender1 = "Male"
+email1 = "irfantijanie2@gmail.com"
+address1 = "no.43 Taman"
+academic1 = "bachelor"
+username1 = "irfantijanie1"
+password1 = "123"
+id1 = 1
+
+cursor.execute(
+    f"Update employee_info SET employee_name = '{name1}', gender = '{gender1}', email = '{email1}', address = '{address1}', Academic_qualification = '{academic1}', Username = '{username1}', Password = '{password1}' WHERE employee_ID = '{id1}';")
 
 cursor.execute(
     "SELECT * FROM employee_info;")
