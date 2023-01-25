@@ -94,7 +94,7 @@ def getId(username):
 def home():
     try:
         conn = dbConnect()
-        return render_template('home.html')
+        return redirect(url_for('login'))
     except:
         return "Connection Failed"
     finally:
