@@ -56,8 +56,31 @@ def login():
             flash("please fill out this field")
             return render_template('login.html', form=getLoginForm)
         else:
+            usernameLogin = getLoginForm.username.data
+            passwordLogin = getLoginForm.password.data
+            connection = sqlite3.connect(
+                r'Employee Management/employee_info_db.db')
+            cursor = connection.cursor()
+            cursor.execute(
+                f"SELECT * FROM admin_auth where Username='{usernameLogin}' AND Password='{passwordLogin}';")
+            if cursor.fetchone() == None:
+                cursor.execute(
+                    f"SELECT * FROM employee_info where Username='{usernameLogin}' AND Password={passwordLogin};")
+                if cursor.fetchone() == None:
+                    return "not success"
+                # employee login
+                else:
+                    return "Employee success"
+
+            # admin login
+            else:
+                return "admin success"
+            connection.commit()
+            cursor.close()
+            connection.close()
             # return redirect(url_for('successSubmission', form=getRegistrationForm))
-            return getLoginForm.username.data
+
+            return passwordLogin
     elif request.method == 'GET':
         return render_template('login.html', form=getLoginForm)
 
@@ -70,11 +93,20 @@ def signup():
             flash("please fill out this field")
             return render_template('signup.html', form=getRegistrationForm)
         else:
-            # return redirect(url_for('successSubmission', form=getRegistrationForm))
-            return getRegistrationForm.username.data
+            return redirect(url_for('empDash'))
+            # return getRegistrationForm.username.data
     elif request.method == 'GET':
         return render_template('signup.html', form=getRegistrationForm)
 
+
+@app.route('/adminDashboard')
+def adminDash():
+    return "admin Dashboard"
+
+
+@app.route('/employeeDashboard')
+def empDash():
+    return "Employee Dashboard"
 
 # @ app.route('/success')
 # def successSubmission(form):
